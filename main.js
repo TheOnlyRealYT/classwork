@@ -3,10 +3,11 @@ const fs = require('fs')
 const path = require('path')
 const qs = require("querystring")
 const form = `    
-<form method="post">
-    <input type="text" name="productName" id="productName" placeholder="productName">
-    <input type="text" name="productId" id="productId" placeholder="productId">
-    <input type="number" name="productPrice" id="productPrice" placeholder="productPrice">
+<form method="post" action="/">
+    <h1>Enter Product</h1>
+    <input type="text" name="productName" id="productName" placeholder="productName"><br>
+    <input type="number" name="productPrice" id="productPrice" placeholder="productPrice"><br>
+    <input type="submit" value="Submit">
 </form>`
 
 
@@ -22,7 +23,24 @@ http.createServer(function (request, response) {
                 response.writeHead(200, {'Content-Type': 'text/html'});
                 response.end(form);
             } else if (request.method === "POST"){
-
+                let body = "";
+                request.on("data",  (chunk) => {
+                    body += chunk;
+                })
+                request.on("end", ()=>{
+                    let parsed = qs.parse(body);
+                    let product = {};
+                    product.productName = parsed.productName;
+                    product.productPrice = parsed.productPrice;
+                    let products = JSON.parse(fs.readFileSync(filepath));
+                    products.push(product);
+                    fs.writeFileSync(filepath, JSON.stringify(products))
+                    response.writeHead(302, {location: "/"});
+                    response.end();
+                })
+            } else {
+                response.writeHead(400, {'Content-Type': 'text/html'});
+                response.end('<h1>Bad Request</h1>');
             }
             break;
         default:
