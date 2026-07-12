@@ -1,0 +1,23 @@
+{
+  "name": "nti",
+  "version": "1.0.0",
+  "description": "study",
+  "keywords": [
+    "study"
+  ],
+  "homepage": "https://github.com/TheOnlyRealYT/classwork#readme",
+  "bugs": {
+    "url": "https://github.com/TheOnlyRealYT/classwork/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheOnlyRealYT/classwork.git"
+  },
+  "license": "ISC",
+  "author": "Hamza Osama",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "test": "test"
+  }
+}
