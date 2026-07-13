@@ -1,9 +1,9 @@
 {
-  "name": "nti",
+  "name": "expressing",
   "version": "1.0.0",
-  "description": "study",
+  "description": "very expressed",
   "keywords": [
-    "study"
+    "words"
   ],
   "homepage": "https://github.com/TheOnlyRealYT/classwork#readme",
   "bugs": {
@@ -16,12 +16,8 @@
   "license": "ISC",
   "author": "Hamza Osama",
   "type": "commonjs",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "test": "test",
-    "dev": "nodemon main.js"
-  },
-  "dependencies": {
-    "nodemon": "^3.1.14"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
