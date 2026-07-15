@@ -54,8 +54,8 @@ export async function filteredSearch(req, res){
 export async function getAllMembers(req, res) {
     try {
         let allMembers = await studentModel.find().populate('department');
-        res.status(200).json(allMembers);
+        return res.status(200).json(allMembers);
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: err.message });
     }
 }

@@ -5,7 +5,7 @@ import auth from "../auth/auth.js";
 var studentRouter = express.Router()
 
 studentRouter.post("/register", register)
-studentRouter.get("/", getAllMembers)
+studentRouter.get("/", auth, getAllMembers)
 studentRouter.post("/login", login)
 
 export default studentRouter;

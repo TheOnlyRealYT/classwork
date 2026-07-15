@@ -7,10 +7,10 @@ export default function auth(req, res, next){
     }
     try {
         const token = authorization.replace("Bearer ", "");
-    } catch (err) {
-        console.error(err);
         const payload = jwt.verify(token, "secret");
         req.user = payload;
         next();
+    } catch (err) {
+        console.error(err);
     }
 }
