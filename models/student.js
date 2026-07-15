@@ -21,7 +21,8 @@ const studentSchema = new mongoose.Schema(
             city: {type:String},
             street: {type:String},
             building: {type:Number},
-        }
+        },
+        department: {type: mongoose.Schema.Types.ObjectId, ref:"departments"}
     }
 )
 

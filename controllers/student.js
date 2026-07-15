@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import studentModel from "../models/student.js";
 
 export async function register(req, res){
@@ -10,7 +11,8 @@ export async function register(req, res){
             city: req.body.address?.city,
             street: req.body.address?.street,
             building: req.body.address?.building
-        }
+        },
+        department: req.body.departmentID
     });
     student.role = "student";
     if (!student){
@@ -33,7 +35,7 @@ export async function filteredSearch(req, res){
 
 export async function getAllMembers(req, res) {
     try {
-        let allMembers = await studentModel.find();
+        let allMembers = await studentModel.find().populate('department');
         res.status(200).json(allMembers);
     } catch (err) {
         res.status(500).json({ error: err.message });

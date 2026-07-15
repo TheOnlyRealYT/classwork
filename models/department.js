@@ -5,6 +5,6 @@ const departmentSchema = new mongoose.Schema({
     level: {type:Number}
 })
 
-var departmentModel = mongoose.model("Department", departmentSchema);
+var departmentModel = mongoose.model("departments", departmentSchema);
 
 export default departmentModel;
