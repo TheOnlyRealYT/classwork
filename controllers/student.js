@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import studentModel from "../models/student.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export async function register(req, res){
     let student = new studentModel({
@@ -31,7 +33,18 @@ export async function login(req, res){
     if (!email || !password){
         return res.status(400).send("Email and password are required")
     }
-    
+    let std = await studentModel.findOne({email: email})
+    if (!std) {
+        return res.status(404).send({"Message": "Not Found"})
+    }
+    let hashpassword = await bcrypt.compare(password, std.password)
+    if (!hashpassword) {
+        return res.status(400).send({"Message": "Wrong Credentials"})
+    }
+
+    let token = jwt.sign({email: std.email, role:std.role}, "secret") //replace secret
+
+    return res.status(200).json({ token: token })
 }
 
 export async function filteredSearch(req, res){

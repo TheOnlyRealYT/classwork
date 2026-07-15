@@ -19,6 +19,13 @@ mongoose.connect("mongodb://localhost:27017/MEAN").then(()=>{
 const PORT = 3000;
 
 //middleware
+app.use(cors({
+    origin:"*"
+}))
+
+app.use("/student", studentRouter);
+app.use("/department", departmentRouter);
+
 app.use((req, res, next) => {
     res.status(404).send({"message": "Page Not Found"})
     next();
@@ -29,12 +36,6 @@ app.use((err, req, res, next) => {
     res.status(500).send({"message": `Internal Server Error ${err.message}`});
     next();
 });
-app.use(cors({
-    origin:"*"
-}))
-
-app.use("/student", studentRouter);
-app.use("/department", departmentRouter);
 
 app.listen(PORT, "localhost", ()=>{
     console.log(`Server running on http://localhost:${PORT}`);
