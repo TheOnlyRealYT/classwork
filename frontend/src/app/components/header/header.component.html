@@ -1,1 +1,9 @@
-<p>header works!</p>
+<div>
+    <header>
+        <nav>
+            <h1>{{num}} - {{str}}</h1>
+            <button (click)="onButtonClick()">click me</button>
+            <input type="text" [(ngModel)] = "str">
+        </nav>
+    </header>
+</div>
